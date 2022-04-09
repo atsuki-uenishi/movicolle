@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'search_screen.dart';
 import 'mypage_screen.dart';
 import 'setting_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,12 +23,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height,
+        maxWidth: MediaQuery.of(context).size.width,
+      ),
+      designSize: Size(360, 690),
+      context: context,
+      minTextAdapt: true,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
           'assets/images/logo.png',
-          height: 80,
-          width: 80,
+          height: 60.h,
+          width: 60.w,
         ),
       ),
       body: _pages[_selectedIndex],
