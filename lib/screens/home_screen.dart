@@ -37,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Image.asset(
           'assets/images/logo.png',
-          height: 60.h,
-          width: 60.w,
+          height: 60.0.h,
+          width: 60.0.w,
         ),
       ),
       body: _pages[_selectedIndex],

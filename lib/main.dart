@@ -3,7 +3,6 @@ import 'package:movicolle/screens/mypage_screen.dart';
 import 'package:movicolle/screens/setting_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/search_screen.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() => runApp(MoviColle());
 
