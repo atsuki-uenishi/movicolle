@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movicolle/screens/home_screen_init.dart';
 import 'package:movicolle/text_data.dart';
-import 'package:movicolle/screens/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movicolle/authentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movicolle/component/error_dialog.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -30,11 +33,19 @@ class LoginButton extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
           ),
         ),
-        onPressed: () {
-          Navigator.pushNamed(
-            context,
-            LoginScreen.id,
-          );
+        onPressed: () async {
+          FirebaseAuthModel firebaseAuthModel = FirebaseAuthModel();
+          final User? user = await firebaseAuthModel.signWithGoogle();
+          if (user != null) {
+            Navigator.pushNamed(context, HomeScreen.id);
+          } else {
+            showDialog<void>(
+                context: context,
+                builder: (_) {
+                  return ErrorDialog();
+                });
+          }
+          //print(user);
         },
         child: Text(
           TextData.loginText,

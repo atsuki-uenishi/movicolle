@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movicolle/text_data.dart';
 import 'package:movicolle/component/register_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -21,11 +22,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               TextData.registerText,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 40.0,
+                fontSize: 40.0.sp,
                 color: Colors.black,
               ),
             ),
@@ -81,7 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     decoration: const InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
-                      hintText: 'Password',
+                      hintText: TextData.passwordText,
                       hintStyle: TextStyle(
                         color: Colors.grey,
                       ),
@@ -102,10 +103,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 25.0,
+            SizedBox(
+              height: 25.0.h,
             ),
-            const RegisterButton(),
+            RegisterButton(),
           ],
         ),
       ),

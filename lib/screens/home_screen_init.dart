@@ -24,16 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-      BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height,
-        maxWidth: MediaQuery.of(context).size.width,
-      ),
-      designSize: const Size(360, 690),
-      context: context,
-      minTextAdapt: true,
-    );
-
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(

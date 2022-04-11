@@ -12,16 +12,6 @@ class TopScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-      BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height,
-        maxWidth: MediaQuery.of(context).size.width,
-      ),
-      designSize: const Size(360, 690),
-      context: context,
-      minTextAdapt: true,
-    );
-
     return Scaffold(
       body: Container(
           decoration: const BoxDecoration(
@@ -42,10 +32,10 @@ class TopScreen extends StatelessWidget {
                   image: AssetImage("assets/images/logo.png"),
                 ),
                 LoginButton(),
-                SizedBox(
-                  height: 30.0.h,
-                ),
-                RegisterButton(),
+                // SizedBox(
+                //   height: 30.0.h,
+                // ),
+                // RegisterButton(),
               ],
             ),
           )),

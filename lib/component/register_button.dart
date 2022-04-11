@@ -34,10 +34,10 @@ class RegisterButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          Navigator.pushNamed(
-            context,
-            RegisterScreen.id,
-          );
+          // Navigator.pushNamed(
+          //   context,
+          //   RegisterScreen.id,
+          // );
         },
         child: Text(
           TextData.registerText,

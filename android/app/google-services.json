@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "659070706398",
+    "project_id": "movicolle-1949d",
+    "storage_bucket": "movicolle-1949d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659070706398:android:0d417c8d7fb7c63526184f",
+        "android_client_info": {
+          "package_name": "com.atstuki_uenishi.movicolle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659070706398-abqtdsmo42mv3jt32kklgb3o9sgcvfln.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.atstuki_uenishi.movicolle",
+            "certificate_hash": "dcbd703182466bb22926f5544c634056037afe39"
+          }
+        },
+        {
+          "client_id": "659070706398-sbdt7gre55lte22ueoiuup3dcjveu8jq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsWhwhLrCx4r87DYKlcQ2mlengbz794Cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659070706398-sbdt7gre55lte22ueoiuup3dcjveu8jq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
