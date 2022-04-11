@@ -3,7 +3,7 @@ import 'search_screen.dart';
 import 'mypage_screen.dart';
 import 'setting_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movicolle/textdata.dart';
+import 'package:movicolle/text_data.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
         maxHeight: MediaQuery.of(context).size.height,
         maxWidth: MediaQuery.of(context).size.width,
       ),
-      designSize: Size(360, 690),
+      designSize: const Size(360, 690),
       context: context,
       minTextAdapt: true,
     );

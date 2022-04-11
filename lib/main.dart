@@ -4,7 +4,7 @@ import 'package:movicolle/screens/mypage_screen.dart';
 import 'package:movicolle/screens/register_screen.dart';
 import 'package:movicolle/screens/setting_screen.dart';
 import 'package:movicolle/screens/top_screen.dart';
-import 'screens/home_screen.dart';
+import 'screens/home_screen_init.dart';
 import 'screens/search_screen.dart';
 
 void main() => runApp(MoviColle());

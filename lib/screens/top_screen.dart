@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'register_screen.dart';
-import 'package:movicolle/textdata.dart';
+import 'package:movicolle/text_data.dart';
+import 'package:movicolle/component/register_button.dart';
+import 'package:movicolle/component/login_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TopScreen extends StatelessWidget {
   static String id = 'top_screen';
@@ -9,6 +12,16 @@ class TopScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height,
+        maxWidth: MediaQuery.of(context).size.width,
+      ),
+      designSize: const Size(360, 690),
+      context: context,
+      minTextAdapt: true,
+    );
+
     return Scaffold(
       body: Container(
           decoration: const BoxDecoration(
@@ -28,65 +41,11 @@ class TopScreen extends StatelessWidget {
                 const Image(
                   image: AssetImage("assets/images/logo.png"),
                 ),
+                LoginButton(),
                 SizedBox(
-                  width: 300.0,
-                  height: 70.0,
-                  child: OutlinedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.lightGreen),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        LoginScreen.id,
-                      );
-                    },
-                    child: const Text(
-                      TextData.loginText,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                      ),
-                    ),
-                  ),
+                  height: 30.0.h,
                 ),
-                const SizedBox(
-                  height: 30.0,
-                ),
-                SizedBox(
-                  height: 70.0,
-                  width: 300.0,
-                  child: OutlinedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                      ),
-                      side: MaterialStateProperty.all(
-                        const BorderSide(color: Colors.lightGreen),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        RegisterScreen.id,
-                      );
-                    },
-                    child: const Text(
-                      TextData.registerText,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                      ),
-                    ),
-                  ),
-                ),
+                RegisterButton(),
               ],
             ),
           )),
