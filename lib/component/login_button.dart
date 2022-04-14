@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movicolle/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movicolle/component/error_dialog.dart';
+import 'package:movicolle/main.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -49,10 +50,8 @@ class LoginButton extends StatelessWidget {
         },
         child: Text(
           TextData.loginText,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 30.0.sp,
-          ),
+          style:
+              Theme.of(context).textTheme.button?.copyWith(color: Colors.white),
         ),
       ),
     );

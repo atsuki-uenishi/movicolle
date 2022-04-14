@@ -27,8 +27,8 @@ class TopScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Image(
+              children: const [
+                Image(
                   image: AssetImage("assets/images/logo.png"),
                 ),
                 LoginButton(),

@@ -25,6 +25,21 @@ class MoviColle extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: () => MaterialApp(
+        theme: ThemeData(
+          textTheme: TextTheme(
+            headline1: TextStyle(fontSize: 24.0.sp),
+            headline2: TextStyle(fontSize: 20.0.sp),
+            headline3: TextStyle(fontSize: 14.0.sp),
+            headline4: TextStyle(fontSize: 24.0.sp),
+            headline5: TextStyle(fontSize: 18.0.sp),
+            headline6: TextStyle(fontSize: 10.0.sp),
+            subtitle1: TextStyle(fontSize: 16.0.sp),
+            subtitle2: TextStyle(fontSize: 14.0.sp),
+            bodyText1: TextStyle(fontSize: 16.0.sp),
+            bodyText2: TextStyle(fontSize: 14.0.sp),
+            button: TextStyle(fontSize: 24.0.sp),
+          ),
+        ),
         initialRoute: TopScreen.id,
         routes: {
           TopScreen.id: (context) => TopScreen(),

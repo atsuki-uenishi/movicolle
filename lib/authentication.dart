@@ -13,7 +13,7 @@ class FirebaseAuthModel {
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final _firestore = FirebaseFirestore.instance;
+  final _firebaseFirestore = FirebaseFirestore.instance;
 
   Future<User?> signWithGoogle() async {
     User? _user;
@@ -35,7 +35,7 @@ class FirebaseAuthModel {
             await _firebaseAuth.signInWithCredential(credential);
         _user = userCredential.user;
         if (userCredential.additionalUserInfo!.isNewUser) {
-          _firestore.collection(TextData.usersText).doc(_user!.uid).set(
+          _firebaseFirestore.collection(TextData.usersText).doc(_user!.uid).set(
             {
               TextData.nameText: _user.displayName,
               TextData.emailText: _user.email,
