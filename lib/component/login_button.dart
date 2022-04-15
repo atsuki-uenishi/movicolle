@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movicolle/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movicolle/component/error_dialog.dart';
-import 'package:movicolle/main.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -39,13 +38,13 @@ class LoginButton extends StatelessWidget {
           final User? user = await firebaseAuthModel.signWithGoogle();
           if (user != null) {
             Navigator.pushNamed(context, HomeScreen.id);
-          } else {
-            showDialog<void>(
-                context: context,
-                builder: (_) {
-                  return ErrorDialog();
-                });
+            return;
           }
+          showDialog<void>(
+              context: context,
+              builder: (_) {
+                return ErrorDialog();
+              });
           //print(user);
         },
         child: Text(

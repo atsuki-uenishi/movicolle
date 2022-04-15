@@ -6,6 +6,8 @@ class TextData {
   static const String searchText = '検索';
   static const String emailText = 'email';
   static const String passwordText = 'password';
+  static const String errorText = 'エラー';
+  static const String okText = 'OK';
 
   static const String usersText = 'users';
   static const String nameText = 'name';

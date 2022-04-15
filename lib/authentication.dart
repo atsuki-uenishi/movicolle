@@ -21,35 +21,36 @@ class FirebaseAuthModel {
     final GoogleSignInAccount? googleSignInAccount =
         await _googleSignIn.signIn();
 
-    if (googleSignInAccount != null) {
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
+    if (googleSignInAccount == null) {
+      return null;
+    }
+    final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount.authentication;
 
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
 
-      try {
-        final UserCredential userCredential =
-            await _firebaseAuth.signInWithCredential(credential);
-        _user = userCredential.user;
-        if (userCredential.additionalUserInfo!.isNewUser) {
-          _firebaseFirestore.collection(TextData.usersText).doc(_user!.uid).set(
-            {
-              TextData.nameText: _user.displayName,
-              TextData.emailText: _user.email,
-            },
-          );
-        }
-        return _user;
-      } catch (e) {
-        debugPrint(e.toString());
+    try {
+      final UserCredential userCredential =
+          await _firebaseAuth.signInWithCredential(credential);
+      _user = userCredential.user;
+      if (userCredential.additionalUserInfo!.isNewUser) {
+        _firebaseFirestore.collection(TextData.usersText).doc(_user!.uid).set(
+          {
+            TextData.nameText: _user.displayName,
+            TextData.emailText: _user.email,
+          },
+        );
       }
+      return _user;
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 
-  Future signOut() async {
+  Future<void> signOut() async {
     await _firebaseAuth.signOut();
     await _googleSignIn.signOut();
   }
