@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movicolle/text_data.dart';
+import 'package:movicolle/constants/text_data.dart';
 import 'package:movicolle/component/login_button.dart';
 
 class LoginScreen extends StatefulWidget {

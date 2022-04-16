@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'text_data.dart';
+import 'constants/text_data.dart';
 
 class FirebaseAuthModel {
   static Future<FirebaseApp> initializeFirebase() async {

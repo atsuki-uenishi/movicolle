@@ -3,7 +3,7 @@ import 'search_screen.dart';
 import 'mypage_screen.dart';
 import 'setting_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movicolle/text_data.dart';
+import 'package:movicolle/constants/text_data.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -25,13 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset(
-          'assets/images/logo.png',
-          height: 60.0.h,
-          width: 60.0.w,
-        ),
-      ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -53,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: TextData.searchText,
+            label: TextData.settingText,
           ),
         ],
       ),
