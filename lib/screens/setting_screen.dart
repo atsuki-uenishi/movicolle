@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movicolle/constants/text_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movicolle/component/save_name_dialog.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -14,6 +15,32 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   static String name = TextData.defaultNameText;
   final textController = TextEditingController(text: name);
+  File? image;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> getImageFromCamera() async {
+    final XFile? _pickedFile =
+        await _picker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      if (_pickedFile != null) {
+        image = File(_pickedFile.path);
+      }
+    });
+  }
+
+  Future<void> getImageFromGallery() async {
+    try {
+      final _pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        if (_pickedFile != null) {
+          image = File(_pickedFile.path);
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +61,17 @@ class _SettingScreenState extends State<SettingScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    backgroundImage: null,
+                    backgroundImage: image == null
+                        ? const AssetImage("assets/images/logo.png")
+                        : Image.file(image!, fit: BoxFit.cover).image,
                     backgroundColor: Colors.grey,
                     radius: 40.0.r,
-                    child: const Text(TextData.userText),
                   ),
                   SizedBox(width: 5.0.w),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await getImageFromGallery();
+                    },
                     child: Text(
                       TextData.changeImageText,
                       style: Theme.of(context).textTheme.headline6,
@@ -50,7 +80,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ],
               ),
               SizedBox(height: 10.0.h),
-              const SettingTittle(tittle: TextData.nameText),
+              const _SettingTittle(tittle: TextData.nameText),
               SizedBox(
                 height: 5.0.h,
               ),
@@ -76,59 +106,30 @@ class _SettingScreenState extends State<SettingScreen> {
                   name = value;
                 },
               ),
-              SizedBox(height: 5.0.h),
-              Align(
-                alignment: Alignment.centerRight,
-                child: OutlinedButton(
-                  onPressed: () {
-                    name = name;
-                    showDialog<void>(
-                        context: context,
-                        builder: (_) {
-                          return const SaveNameDialog();
-                        });
-                  },
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.lightBlue),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                    ),
-                  ),
-                  child: Text(
-                    TextData.saveText,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1!
-                        .copyWith(color: Colors.white),
-                  ),
-                ),
-              ),
               SizedBox(height: 15.0.h),
-              const SettingTittle(tittle: TextData.screenSettingText),
+              const _SettingTittle(tittle: TextData.screenSettingText),
               SizedBox(height: 5.0.h),
-              SettingListItem(
+              _SettingListItem(
                 icon: const Icon(Icons.colorize),
                 title: TextData.themeColorText,
                 onTap: () {},
               ),
               SizedBox(height: 15.0.h),
-              const SettingTittle(tittle: TextData.aboutAppText),
+              const _SettingTittle(tittle: TextData.aboutAppText),
               SizedBox(height: 5.0.h),
-              SettingListItem(
+              _SettingListItem(
                 icon: const Icon(Icons.email),
                 title: TextData.contactText,
                 onTap: () {},
               ),
               SizedBox(height: 2.0.h),
-              SettingListItem(
+              _SettingListItem(
                 icon: const Icon(Icons.construction),
                 title: TextData.defectText,
                 onTap: () {},
               ),
               SizedBox(height: 2.0.h),
-              SettingListItem(
+              _SettingListItem(
                 icon: const Icon(Icons.assignment_turned_in),
                 title: TextData.privacyPolicyText,
                 onTap: () {},
@@ -141,8 +142,8 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 }
 
-class SettingTittle extends StatelessWidget {
-  const SettingTittle({
+class _SettingTittle extends StatelessWidget {
+  const _SettingTittle({
     Key? key,
     required this.tittle,
   }) : super(key: key);
@@ -162,8 +163,8 @@ class SettingTittle extends StatelessWidget {
   }
 }
 
-class SettingListItem extends StatelessWidget {
-  const SettingListItem({
+class _SettingListItem extends StatelessWidget {
+  const _SettingListItem({
     Key? key,
     required this.icon,
     required this.title,

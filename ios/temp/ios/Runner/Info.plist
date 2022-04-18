@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Movicolle</string>
+	<string>Temp</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>movicolle</string>
+	<string>temp</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -43,22 +43,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CFBundleURLTypes</key>
-    <array>
-    	<dict>
-    		<key>CFBundleTypeRole</key>
-    		<string>Editor</string>
-    		<key>CFBundleURLSchemes</key>
-    		<array>
-    			<string>com.googleusercontent.apps.659070706398-ff1bqoacloqqaa58jmpjk5ojvp34auuc</string>
-    		</array>
-    	</dict>
-    </array>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app requires to access your photo library</string>
-    <key>NSCameraUsageDescription</key>
-    <string>This app requires to add file to your camera</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>This app requires to add file to your photo library your microphone</string>
 </dict>
 </plist>

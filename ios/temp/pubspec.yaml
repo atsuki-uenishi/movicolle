@@ -1,5 +1,5 @@
-name: movicolle
-description: first app movie collection
+name: temp
+description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -45,13 +45,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-  flutter_screenutil: ^5.3.1
-  firebase_core: ^1.12.0
-  firebase_auth: ^3.3.8
-  google_sign_in: ^5.2.4
-  cloud_firestore: ^3.1.8
-  image_picker: ^0.8.5
-  path_provider: ^2.0.9
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,9 +56,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets:
-    - assets/
-    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
