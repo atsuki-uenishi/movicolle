@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movicolle/screens/home_screen_init.dart';
-import 'package:movicolle/text_data.dart';
+import 'package:movicolle/constants/text_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movicolle/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -43,14 +43,14 @@ class LoginButton extends StatelessWidget {
           showDialog<void>(
               context: context,
               builder: (_) {
-                return ErrorDialog();
+                return const ErrorDialog();
               });
           //print(user);
         },
         child: Text(
           TextData.loginText,
           style:
-              Theme.of(context).textTheme.button?.copyWith(color: Colors.white),
+              Theme.of(context).textTheme.button!.copyWith(color: Colors.white),
         ),
       ),
     );

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:movicolle/constants/text_data.dart';
 
-class ErrorDialog extends StatelessWidget {
-  const ErrorDialog({Key? key}) : super(key: key);
+class SaveNameDialog extends StatelessWidget {
+  const SaveNameDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(TextData.errorText),
+      title: const Text(TextData.saveNameText),
       actions: <Widget>[
         GestureDetector(
-          child: Text(TextData.okText),
+          child: const Text(TextData.okText),
           onTap: () {
             Navigator.pop(context);
           },

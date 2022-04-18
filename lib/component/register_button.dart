@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movicolle/text_data.dart';
+import 'package:movicolle/constants/text_data.dart';
 import 'package:movicolle/screens/register_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
