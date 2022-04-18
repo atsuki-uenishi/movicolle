@@ -15,31 +15,30 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   static String name = TextData.defaultNameText;
   final textController = TextEditingController(text: name);
-  File? image;
-  final ImagePicker _picker = ImagePicker();
+  File? _image;
+  final ImagePicker picker = ImagePicker();
 
-  Future<void> getImageFromCamera() async {
-    final XFile? _pickedFile =
-        await _picker.pickImage(source: ImageSource.camera);
-
+  // Future<void> getImageFromCamera() async {
+  //   final XFile? _pickedFile =
+  //       await _picker.pickImage(source: ImageSource.camera);
+  //
+  //   setState(() {
+  //     if (_pickedFile != null) {
+  //       image = File(_pickedFile.path);
+  //     }
+  //   });
+  // }
+  //
+  Future<void> getImageFromGallery() async {
+    final _pickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50,
+        preferredCameraDevice: CameraDevice.front);
     setState(() {
       if (_pickedFile != null) {
-        image = File(_pickedFile.path);
+        _image = File(_pickedFile.path);
       }
     });
-  }
-
-  Future<void> getImageFromGallery() async {
-    try {
-      final _pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-      setState(() {
-        if (_pickedFile != null) {
-          image = File(_pickedFile.path);
-        }
-      });
-    } catch (e) {
-      print(e);
-    }
   }
 
   @override
@@ -61,16 +60,16 @@ class _SettingScreenState extends State<SettingScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    backgroundImage: image == null
-                        ? const AssetImage("assets/images/logo.png")
-                        : Image.file(image!, fit: BoxFit.cover).image,
+                    backgroundImage: _image == null
+                        ? null
+                        : Image.file(_image!, fit: BoxFit.cover).image,
                     backgroundColor: Colors.grey,
-                    radius: 40.0.r,
+                    radius: 100.0.r,
                   ),
                   SizedBox(width: 5.0.w),
                   TextButton(
-                    onPressed: () async {
-                      await getImageFromGallery();
+                    onPressed: () {
+                      getImageFromGallery();
                     },
                     child: Text(
                       TextData.changeImageText,
