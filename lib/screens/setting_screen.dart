@@ -3,6 +3,13 @@ import 'package:movicolle/constants/text_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'theme_color_screen.dart';
+
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
+import 'package:movicolle/providers/user_provider.dart';
+import 'package:movicolle/model/user_model.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -15,34 +22,82 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   static String name = TextData.defaultNameText;
   final textController = TextEditingController(text: name);
-  File? _image;
+  Image? _image;
   final ImagePicker picker = ImagePicker();
+  UserProvider? user;
 
-  // Future<void> getImageFromCamera() async {
-  //   final XFile? _pickedFile =
-  //       await _picker.pickImage(source: ImageSource.camera);
-  //
-  //   setState(() {
-  //     if (_pickedFile != null) {
-  //       image = File(_pickedFile.path);
-  //     }
-  //   });
-  // }
-  //
-  Future<void> getImageFromGallery() async {
+  Future<void> _getImageFromGallery(UserModel userModel) async {
     final _pickedFile = await picker.pickImage(
         source: ImageSource.gallery,
         imageQuality: 50,
         preferredCameraDevice: CameraDevice.front);
-    setState(() {
-      if (_pickedFile != null) {
-        _image = File(_pickedFile.path);
-      }
-    });
+    if (_pickedFile != null) {
+      _uploadFile(_pickedFile.path, _pickedFile.name);
+      _addFilePath(userModel.uid, _pickedFile.path,
+          ('${TextData.imagesText}/${_pickedFile.name}'));
+      _getImgs(
+          _pickedFile.path, ('${TextData.imagesText}/${_pickedFile.name}'));
+    }
   }
+
+  Future<void> _uploadFile(String sourcePath, String uploadFileName) async {
+    final FirebaseStorage storage = FirebaseStorage.instance;
+    Reference ref =
+        storage.ref().child(TextData.imagesText).child('/$uploadFileName');
+    File file = File(sourcePath);
+
+    try {
+      await ref.putFile(file);
+    } catch (FirebaseException) {
+      print(FirebaseException);
+    }
+  }
+
+  Future<void> _addFilePath(
+      String? userId, String localPath, String remotePath) async {
+    CollectionReference users =
+        FirebaseFirestore.instance.collection(TextData.usersText);
+    await users.doc(userId).set({
+      TextData.localPathText: localPath,
+      TextData.remotePathText: remotePath,
+    }, SetOptions(merge: true));
+  }
+
+  Future<void> _getImgs(String? imgPathLocal, String? imgPathRemote) async {
+    String? imgPathUse;
+    if (imgPathLocal != null) {
+      bool existLocal = await File(imgPathLocal).existsSync();
+      if (existLocal) {
+        imgPathUse = imgPathLocal;
+        _image = Image.file(File(imgPathUse));
+      } else if (imgPathRemote != null) {
+        try {
+          imgPathUse = await FirebaseStorage.instance
+              .ref()
+              .child(TextData.imagesText)
+              .child(imgPathRemote)
+              .getDownloadURL();
+          _image = Image.network(imgPathUse);
+        } catch (FirebaseException) {
+          imgPathUse = null;
+        }
+      } else {
+        imgPathUse = null;
+      }
+    }
+    setState(() {});
+  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   final user = context.read<UserProvider>();
+  //   _getImgs(user.userModel?.localPath, user.userModel?.remotePath);
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final UserProvider userProvider = context.watch<UserProvider>();
     return Scaffold(
       appBar: AppBar(
         title: const Text(TextData.settingText),
@@ -60,16 +115,14 @@ class _SettingScreenState extends State<SettingScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    backgroundImage: _image == null
-                        ? null
-                        : Image.file(_image!, fit: BoxFit.cover).image,
+                    backgroundImage: _image?.image,
                     backgroundColor: Colors.grey,
-                    radius: 100.0.r,
+                    radius: 50.0.r,
                   ),
                   SizedBox(width: 5.0.w),
                   TextButton(
                     onPressed: () {
-                      getImageFromGallery();
+                      _getImageFromGallery(userProvider.userModel!);
                     },
                     child: Text(
                       TextData.changeImageText,
@@ -111,7 +164,9 @@ class _SettingScreenState extends State<SettingScreen> {
               _SettingListItem(
                 icon: const Icon(Icons.colorize),
                 title: TextData.themeColorText,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, ThemeColorScreen.id);
+                },
               ),
               SizedBox(height: 15.0.h),
               const _SettingTittle(tittle: TextData.aboutAppText),
@@ -172,7 +227,7 @@ class _SettingListItem extends StatelessWidget {
 
   final Icon icon;
   final String title;
-  final Function onTap;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -190,7 +245,7 @@ class _SettingListItem extends StatelessWidget {
         Icons.chevron_right,
         size: 40.0.w,
       ),
-      onTap: onTap(),
+      onTap: onTap,
     );
   }
 }
