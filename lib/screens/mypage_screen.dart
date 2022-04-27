@@ -19,6 +19,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
           height: 60.0.h,
           width: 60.0.w,
         ),
+        automaticallyImplyLeading: false,
       ),
       body: Text('mypage'),
     );

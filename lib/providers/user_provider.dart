@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movicolle/authentication.dart';
 import 'package:movicolle/model/user_model.dart';
-import 'package:provider/provider.dart';
 import 'package:movicolle/constants/text_data.dart';
 
 class UserProvider with ChangeNotifier {
@@ -12,10 +10,14 @@ class UserProvider with ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  Future fetchUserData() async {
+  Future<void> fetchUserData() async {
     final userId = _firebaseAuth.currentUser?.uid;
     final docs =
         await _firebaseFirestore.doc('${TextData.usersText}/${userId}').get();
+    final data = docs.data();
+    if (data == null) {
+      return;
+    }
     final userModels = UserModel(
       uid: userId,
       name: docs.data()!['name'],

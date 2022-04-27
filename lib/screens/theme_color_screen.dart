@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movicolle/constants/text_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movicolle/main.dart';
 import 'package:provider/provider.dart';
 import 'package:movicolle/providers/theme_color_provider.dart';
 
@@ -15,12 +14,6 @@ class ThemeColorScreen extends StatefulWidget {
 }
 
 class _ThemeColorScreenState extends State<ThemeColorScreen> {
-  final Map<int, Color> blueColor = {
-    200: Color(0XFF85A9CA),
-    300: Color(0xFF5487B4),
-    500: Color(0xFF0B5394),
-  };
-
   @override
   Widget build(BuildContext context) {
     final ThemeColorProvider themeColorProvider =
