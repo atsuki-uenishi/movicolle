@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movicolle/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movicolle/component/error_dialog.dart';
+import 'package:movicolle/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -13,15 +15,7 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-      BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height,
-        maxWidth: MediaQuery.of(context).size.width,
-      ),
-      designSize: const Size(360, 690),
-      context: context,
-      minTextAdapt: true,
-    );
+    final UserProvider userProvider = context.watch<UserProvider>();
 
     return SizedBox(
       width: 300.0.w,
@@ -37,6 +31,7 @@ class LoginButton extends StatelessWidget {
           FirebaseAuthModel firebaseAuthModel = FirebaseAuthModel();
           final User? user = await firebaseAuthModel.signWithGoogle();
           if (user != null) {
+            userProvider.fetchUserData();
             Navigator.pushNamed(context, HomeScreen.id);
             return;
           }

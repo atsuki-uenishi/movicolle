@@ -21,4 +21,9 @@ class TextData {
   static const String privacyPolicyText = 'プライバシーポリシー';
   static const String usersText = 'users';
   static const String nameText = 'name';
+  static const String chooseThemeColorText = '現在のテーマカラー :';
+  static const String childText = 'child';
+  static const String imagesText = 'images';
+  static const String localPathText = 'localPath';
+  static const String remotePathText = 'remotePath';
 }

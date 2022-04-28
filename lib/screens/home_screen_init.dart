@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'search_screen.dart';
 import 'mypage_screen.dart';
 import 'setting_screen.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movicolle/constants/text_data.dart';
 
 class HomeScreen extends StatefulWidget {
