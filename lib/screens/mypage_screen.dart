@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movicolle/screens/post_screen.dart';
 
 class MyPageScreen extends StatefulWidget {
   const MyPageScreen({Key? key}) : super(key: key);
@@ -22,6 +23,19 @@ class _MyPageScreenState extends State<MyPageScreen> {
         automaticallyImplyLeading: false,
       ),
       body: Text('mypage'),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(right: 15.0, bottom: 20.0),
+        child: Container(
+          width: 60.0.w,
+          height: 60.0.h,
+          child: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              Navigator.pushNamed(context, PostScreen.id);
+            },
+          ),
+        ),
+      ),
     );
   }
 }

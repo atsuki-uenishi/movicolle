@@ -26,4 +26,14 @@ class TextData {
   static const String imagesText = 'images';
   static const String localPathText = 'localPath';
   static const String remotePathText = 'remotePath';
+  static const String cancelText = 'キャンセル';
+  static const String postText = 'post';
+  static const String tittleText = 'tittle';
+  static const String impressionText = 'impression';
+  static const String dateText = 'date';
+  static const String ratingText = 'rating';
+  static const String posterUrlText = 'posterUrl';
+  static const String postsText = 'posts';
+  static const String userIdText = 'userId';
+  static const String postDoneText = '投稿しました';
 }

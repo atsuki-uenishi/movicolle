@@ -6,7 +6,7 @@ import 'theme_color_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:movicolle/providers/user_provider.dart';
 import 'package:movicolle/model/user_model.dart';
-import 'package:movicolle/controller/FireStorageController.dart';
+import 'package:movicolle/controller/firestorage_controller.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
