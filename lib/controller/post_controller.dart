@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:movicolle/constants/text_data.dart';
 
 class PostController {
-  final _firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   Future<void> postData(String userId, String tittle, String date, int rating,
       String impression, String? posterUrl) async {
