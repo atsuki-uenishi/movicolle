@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movicolle/screens/login_screen.dart';
 import 'package:movicolle/screens/mypage_screen.dart';
+import 'package:movicolle/screens/post_screen.dart';
 import 'package:movicolle/screens/register_screen.dart';
 import 'package:movicolle/screens/setting_screen.dart';
 import 'package:movicolle/screens/theme_color_screen.dart';
@@ -64,7 +66,17 @@ class MoviColle extends StatelessWidget {
               MyPageScreen.id: (context) => MyPageScreen(),
               SettingScreen.id: (context) => SearchScreen(),
               ThemeColorScreen.id: (context) => ThemeColorScreen(),
+              PostScreen.id: (context) => PostScreen(),
             },
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale("en"),
+              Locale("ja"),
+            ],
           );
         });
   }
