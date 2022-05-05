@@ -4,20 +4,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:movicolle/controller/post_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movicolle/component/post_done_dialog.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({Key? key}) : super(key: key);
-  static String id = 'post_screen';
+  static const String id = 'post_screen';
 
   @override
   _PostScreenState createState() => _PostScreenState();
 }
 
 class _PostScreenState extends State<PostScreen> {
-  static DateTime dateNow = DateTime.now();
-  static DateFormat outputFormat = DateFormat('yyyy-MM-dd');
-  String _date = outputFormat.format(dateNow);
+  static final DateTime _dateNow = DateTime.now();
+  static final DateFormat _outputFormat = DateFormat('yyyy-MM-dd');
+  String _date = _outputFormat.format(_dateNow);
   String? _tittle;
   String? _posterUrl;
   int? _rating;
@@ -27,18 +26,18 @@ class _PostScreenState extends State<PostScreen> {
     final DateTime? picked = await showDatePicker(
         locale: const Locale('ja'),
         context: context,
-        initialDate: dateNow,
+        initialDate: _dateNow,
         firstDate: DateTime(2020),
         lastDate: DateTime.now().add(const Duration(days: 360)));
 
     if (picked != null) {
       setState(() {
-        _date = outputFormat.format(picked);
+        _date = _outputFormat.format(picked);
       });
     }
   }
 
-  void post() async {
+  Future<void> post() async {
     final String? userId = FirebaseAuth.instance.currentUser?.uid;
     await PostController()
         .postData(userId!, _tittle!, _date, _rating!, _impression!, _posterUrl);

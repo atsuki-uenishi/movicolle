@@ -36,4 +36,5 @@ class TextData {
   static const String postsText = 'posts';
   static const String userIdText = 'userId';
   static const String postDoneText = '投稿しました';
+  static const String noImageText = 'noImage';
 }

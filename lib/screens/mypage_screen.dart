@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movicolle/constants/text_data.dart';
 import 'package:movicolle/screens/post_screen.dart';
+import 'package:movicolle/controller/get_data_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MyPageScreen extends StatefulWidget {
   const MyPageScreen({Key? key}) : super(key: key);
@@ -22,7 +27,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
         ),
         automaticallyImplyLeading: false,
       ),
-      body: Text('mypage'),
+      body: DataStream(),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(right: 15.0, bottom: 20.0),
         child: Container(
@@ -35,6 +40,73 @@ class _MyPageScreenState extends State<MyPageScreen> {
             },
           ),
         ),
+      ),
+    );
+  }
+}
+
+class DataStream extends StatelessWidget {
+  DataStream({Key? key}) : super(key: key);
+  final Stream<QuerySnapshot<Object?>>? stream = GetDataController().getData();
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: stream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.lightBlueAccent,
+            ),
+          );
+        }
+        return ListView(
+          children: snapshot.data!.docs.map((DocumentSnapshot document) {
+            Map<String, dynamic> post =
+                document.data()! as Map<String, dynamic>;
+            return PostList(
+              tittle: post[TextData.tittleText],
+              date: post[TextData.dateText],
+              rating: post[TextData.ratingText],
+              impression: post[TextData.impressionText],
+              posterUrl: post[TextData.posterUrlText],
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+}
+
+class PostList extends StatelessWidget {
+  const PostList(
+      {Key? key,
+      required this.tittle,
+      required this.date,
+      required this.rating,
+      required this.impression,
+      required this.posterUrl})
+      : super(key: key);
+
+  final String tittle;
+  final String date;
+  final int rating;
+  final String impression;
+  final String? posterUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+          Text(tittle),
+          Text(date),
+          Text(rating.toString()),
+          Text(impression),
+          posterUrl != null ? Text(posterUrl!) : Text(TextData.noImageText),
+        ],
       ),
     );
   }
