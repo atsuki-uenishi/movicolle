@@ -101,11 +101,16 @@ class PostList extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       child: Column(
         children: [
-          Text(tittle),
           Text(date),
+          Text(tittle),
+          posterUrl != null
+              ? Image.network(
+                  posterUrl!,
+                  height: 200.0.h,
+                )
+              : Text(TextData.noImageText),
           Text(rating.toString()),
           Text(impression),
-          posterUrl != null ? Text(posterUrl!) : Text(TextData.noImageText),
         ],
       ),
     );

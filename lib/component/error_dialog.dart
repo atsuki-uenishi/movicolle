@@ -7,7 +7,11 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(TextData.errorText),
+      title: Text(
+        TextData.errorText,
+        style: Theme.of(context).textTheme.headline3,
+      ),
+      actionsPadding: EdgeInsets.all(10.0),
       actions: <Widget>[
         GestureDetector(
           child: Text(TextData.okText),

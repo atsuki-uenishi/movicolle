@@ -28,13 +28,19 @@ class TextData {
   static const String remotePathText = 'remotePath';
   static const String cancelText = 'キャンセル';
   static const String postText = 'post';
+  static const String postScreenText = '投稿';
   static const String tittleText = 'tittle';
+  static const String tittleScreenText = 'タイトル';
   static const String impressionText = 'impression';
+  static const String impressionScreenText = '感想';
   static const String dateText = 'date';
+  static const String dateScreenText = '日付';
   static const String ratingText = 'rating';
+  static const String ratingScreenText = '評価';
   static const String posterUrlText = 'posterUrl';
   static const String postsText = 'posts';
   static const String userIdText = 'userId';
   static const String postDoneText = '投稿しました';
   static const String noImageText = 'noImage';
+  static const String pleaseEnterText = 'タイトル、感想を入力してください';
 }
