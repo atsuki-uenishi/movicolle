@@ -40,7 +40,6 @@ class LoginButton extends StatelessWidget {
               builder: (_) {
                 return const ErrorDialog();
               });
-          //print(user);
         },
         child: Text(
           TextData.loginText,
