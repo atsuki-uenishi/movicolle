@@ -250,31 +250,12 @@ class PostScreenState extends State<PostScreen> {
                   ),
                   Row(
                     children: [
-                      Icon(
-                        Icons.star,
-                        color: _rating >= 1 ? Colors.yellow : Colors.grey,
-                        size: 40.0,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: _rating >= 2 ? Colors.yellow : Colors.grey,
-                        size: 40.0,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: _rating >= 3 ? Colors.yellow : Colors.grey,
-                        size: 40.0,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: _rating >= 4 ? Colors.yellow : Colors.grey,
-                        size: 40.0,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: _rating >= 5 ? Colors.yellow : Colors.grey,
-                        size: 40.0,
-                      ),
+                      for (int index = 1; index < 6; index++)
+                        Icon(
+                          Icons.star,
+                          color: _rating >= index ? Colors.yellow : Colors.grey,
+                          size: 40.0,
+                        ),
                     ],
                   ),
                   SizedBox(

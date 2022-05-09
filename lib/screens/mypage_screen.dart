@@ -99,19 +99,90 @@ class PostList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(10.0),
-      child: Column(
-        children: [
-          Text(date),
-          Text(tittle),
-          posterUrl != null
-              ? Image.network(
-                  posterUrl!,
-                  height: 200.0.h,
+      child: InkWell(
+        onTap: () {},
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0.r),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: Text(
+                    tittle,
+                    style: Theme.of(context).textTheme.bodyText2,
+                    textAlign: TextAlign.left,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                ),
+                SizedBox(height: 5.0.h),
+                Row(
+                  children: [
+                    for (int index = 1; index <= rating; index++)
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                        size: 20.0.w,
+                      ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10.0.h,
+                ),
+                Row(
+                  children: [
+                    posterUrl != null
+                        ? Image.network(
+                            posterUrl!,
+                            height: 150.0.h,
+                          )
+                        : Container(
+                            height: 150.0.h,
+                            width: 120.0.w,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                            ),
+                            alignment: Alignment.center,
+                            child: const Text(TextData.noImageText),
+                          ),
+                    SizedBox(
+                      width: 10.0.w,
+                    ),
+                    Flexible(
+                      child: Text(
+                        impression,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(height: 1.2.h),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 4,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5.0.h,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: Text(
+                    date,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2!
+                        .copyWith(color: Colors.grey),
+                    textAlign: TextAlign.right,
+                  ),
                 )
-              : Text(TextData.noImageText),
-          Text(rating.toString()),
-          Text(impression),
-        ],
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
