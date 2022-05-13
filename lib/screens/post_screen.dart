@@ -6,6 +6,7 @@ import 'package:movicolle/controller/post_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movicolle/providers/theme_color_provider.dart';
 import 'package:movicolle/screens/api_results_screen.dart';
+import 'package:movicolle/switch_color.dart';
 import 'package:provider/provider.dart';
 import 'package:movicolle/component/please_enter_dialog.dart';
 import 'package:movicolle/controller/tmdb_api_controller.dart';
@@ -57,30 +58,6 @@ class PostScreenState extends State<PostScreen> {
     await PostController()
         .postData(userId!, _tittle!, _date, _rating, _impression!, _posterUrl);
     Navigator.pop(context);
-  }
-
-  Color switchColor(MaterialColor? color) {
-    if (color == Colors.red) {
-      return Colors.red;
-    } else if (color == Colors.blue) {
-      return Colors.blue;
-    } else if (color == Colors.yellow) {
-      return Colors.yellow;
-    } else if (color == Colors.green) {
-      return Colors.green;
-    } else if (color == Colors.purple) {
-      return Colors.purple;
-    } else if (color == Colors.orange) {
-      return Colors.orange;
-    } else if (color == Colors.pink) {
-      return Colors.pink;
-    } else if (color == Colors.brown) {
-      return Colors.brown;
-    } else if (color == Colors.blue) {
-      return Colors.grey;
-    } else {
-      return Colors.blue;
-    }
   }
 
   Future<void> searchApi() async {
@@ -151,7 +128,7 @@ class PostScreenState extends State<PostScreen> {
                                 topLeft: Radius.circular(15.0.r),
                                 bottomLeft: Radius.circular(15.0.r)),
                             borderSide: BorderSide(
-                                color: switchColor(
+                                color: SwitchColor.switchColor(
                                     themeColorProvider.primaryColor),
                                 width: 2.0),
                           )),
@@ -186,7 +163,8 @@ class PostScreenState extends State<PostScreen> {
                 child: Text(
                   _date,
                   style: Theme.of(context).textTheme.headline5!.copyWith(
-                        color: switchColor(themeColorProvider.primaryColor),
+                        color: SwitchColor.switchColor(
+                            themeColorProvider.primaryColor),
                       ),
                 ),
               ),
@@ -309,7 +287,8 @@ class PostScreenState extends State<PostScreen> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0.r)),
                         borderSide: BorderSide(
-                            color: switchColor(themeColorProvider.primaryColor),
+                            color: SwitchColor.switchColor(
+                                themeColorProvider.primaryColor),
                             width: 1.0),
                       )),
                 ),
