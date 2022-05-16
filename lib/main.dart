@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movicolle/screens/api_results_screen.dart';
 import 'package:movicolle/screens/login_screen.dart';
 import 'package:movicolle/screens/mypage_screen.dart';
+import 'package:movicolle/screens/post_detail_screen.dart';
 import 'package:movicolle/screens/post_screen.dart';
 import 'package:movicolle/screens/register_screen.dart';
 import 'package:movicolle/screens/setting_screen.dart';
@@ -69,6 +70,9 @@ class MoviColle extends StatelessWidget {
               ThemeColorScreen.id: (context) => ThemeColorScreen(),
               PostScreen.id: (context) => PostScreen(),
               ApiResultsScreen.id: (context) => ApiResultsScreen(),
+              PostDetailScreen.id: (context) => PostDetailScreen(
+                  arguments: ModalRoute.of(context)?.settings.arguments
+                      as Map<String, dynamic>),
             },
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,

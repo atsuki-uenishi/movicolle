@@ -43,4 +43,6 @@ class TextData {
   static const String postDoneText = '投稿しました';
   static const String noImageText = 'noImage';
   static const String pleaseEnterText = 'タイトル、感想を入力してください';
+  static const String deleteText = '削除';
+  static const String changeText = '変更';
 }
