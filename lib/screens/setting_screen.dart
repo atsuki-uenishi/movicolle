@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:movicolle/constants/text_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:movicolle/screens/contact_screen.dart';
 import 'theme_color_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:movicolle/providers/user_provider.dart';
 import 'package:movicolle/model/user_model.dart';
 import 'package:movicolle/controller/firestorage_controller.dart';
+import 'package:movicolle/controller/privacy_policy_controller.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -112,19 +114,17 @@ class _SettingScreenState extends State<SettingScreen> {
               _SettingListItem(
                 icon: const Icon(Icons.email),
                 title: TextData.contactText,
-                onTap: () {},
-              ),
-              SizedBox(height: 2.0.h),
-              _SettingListItem(
-                icon: const Icon(Icons.construction),
-                title: TextData.defectText,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, ContactScreen.id);
+                },
               ),
               SizedBox(height: 2.0.h),
               _SettingListItem(
                 icon: const Icon(Icons.assignment_turned_in),
                 title: TextData.privacyPolicyText,
-                onTap: () {},
+                onTap: () {
+                  PrivacyPolicyController().openUrl();
+                },
               ),
             ],
           ),

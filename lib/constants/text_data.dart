@@ -42,7 +42,10 @@ class TextData {
   static const String userIdText = 'userId';
   static const String postDoneText = '投稿しました';
   static const String noImageText = 'noImage';
-  static const String pleaseEnterText = 'タイトル、感想を入力してください';
+  static const String pleaseEnterContentsText = 'タイトル、感想を入力してください';
   static const String deleteText = '削除';
   static const String changeText = '変更';
+  static const String contentsText = '内容 :';
+  static const String sendText = '送信';
+  static const String pleaseEnterText = '入力して下さい';
 }

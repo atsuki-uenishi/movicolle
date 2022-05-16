@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movicolle/screens/api_results_screen.dart';
+import 'package:movicolle/screens/contact_screen.dart';
 import 'package:movicolle/screens/login_screen.dart';
 import 'package:movicolle/screens/mypage_screen.dart';
 import 'package:movicolle/screens/post_detail_screen.dart';
@@ -73,6 +74,7 @@ class MoviColle extends StatelessWidget {
               PostDetailScreen.id: (context) => PostDetailScreen(
                   arguments: ModalRoute.of(context)?.settings.arguments
                       as Map<String, dynamic>),
+              ContactScreen.id: (context) => ContactScreen(),
             },
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
