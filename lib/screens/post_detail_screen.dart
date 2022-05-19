@@ -238,8 +238,8 @@ class PostDetailScreenState extends State<PostDetailScreen> {
                         ),
                       ),
                     ),
-                    onPressed: () {
-                      deletePost();
+                    onPressed: () async {
+                      await deletePost();
                       Navigator.pop(context);
                     },
                   ),

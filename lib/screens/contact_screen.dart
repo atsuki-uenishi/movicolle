@@ -9,7 +9,7 @@ import '../switch_color.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({Key? key}) : super(key: key);
-  static String id = 'contact_screen';
+  static const String id = 'contact_screen';
 
   @override
   _ContactScreenState createState() => _ContactScreenState();
