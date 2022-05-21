@@ -8,7 +8,7 @@ class PleaseEnterDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        TextData.pleaseEnterText,
+        TextData.pleaseEnterContentsText,
         style: Theme.of(context).textTheme.headline3,
       ),
       actionsPadding: const EdgeInsets.all(10.0),

@@ -35,7 +35,6 @@ class PostDetailScreenState extends State<PostDetailScreen> {
 
   Future<void> deletePost() async {
     await PostController().deletePostData(_uid!);
-    Navigator.pop(context);
   }
 
   void setData(Map<String, dynamic> arguments) {
@@ -239,8 +238,9 @@ class PostDetailScreenState extends State<PostDetailScreen> {
                         ),
                       ),
                     ),
-                    onPressed: () {
-                      deletePost();
+                    onPressed: () async {
+                      await deletePost();
+                      Navigator.pop(context);
                     },
                   ),
                 ],

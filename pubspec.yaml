@@ -58,6 +58,9 @@ dev_dependencies:
   firebase_storage: ^10.2.12
   intl: ^0.17.0
   http: ^0.13.4
+  flutter_email_sender: ^5.1.0
+  url_launcher: ^6.1.2
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
